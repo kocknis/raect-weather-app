@@ -10,7 +10,7 @@ export default class App extends Component {
       key: "26c4d8ad14b57209671494df9bd9fcb9",
     };
 
-    // this.fetchData = this.fetchData.bind(this)
+    this.fetchData = this.fetchData.bind(this)
   }
 
   fetchData() {
@@ -29,13 +29,14 @@ export default class App extends Component {
     });
   }
 
-  // getCurrentweather(event){
-  //   if(event.key === 13){
-  //     fetchData()
-  //   }
-  // }
+  getCurrentweather(event){
+    if(event.keyCode === 13){
+      this.fetchData()
+    }
+  }
 
   render() {
+    window.addEventListener('keydown', (event) => this.getCurrentweather(event));
     return (
       <> 
         <div className="app-wrap">
