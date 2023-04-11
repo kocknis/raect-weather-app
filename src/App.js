@@ -10,80 +10,13 @@ export default class App extends Component {
     };
 
     super();
-    this.fetchData = this.fetchData.bind(this);
-    this.showDate = this.showDate.bind(this);
-  }
-
-  inputClickFunction() {
-    if (event.keyCode === 13) {
-      fetchData();
-    }
-  }
-
-  showData(data) {
-    let cityElem = document.querySelector(".city");
-    cityElem.innerHTML = `${data.name}, ${data.sys.country}`;
-
-    let dateElem = document.querySelector(".date");
-    dateElem.innerHTML = showDate();
-
-    let tempElem = document.querySelector(".temp");
-    tempElem.innerHTML = `${Math.floor(data.main.temp - 273.15)}°c`;
-
-    let weatherElem = document.querySelector(".weather");
-    weatherElem.innerHTML = `${data.weather[0].main}`;
-
-    let tempsElem = document.querySelector(".hi-low");
-    tempsElem.innerHTML = `${Math.floor(
-      data.main.temp_min - 273.15
-    )}°c / ${Math.floor(data.main.temp_max - 273.15)}°c`;
-  }
-
-  showDate() {
-    let months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-
-    let days = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-
-    let now = new Date();
-
-    let day = days[now.getDay()];
-    let month = months[now.getMonth()];
-    let year = now.getFullYear();
-    let date = now.getDate();
-
-    return `${day} ${date} ${month} ${year}`;
   }
 
   fetchData() {
-    let countryValue = inputElem.value;
-
     fetch(`${apiData.url}${countryValue}&&appid=${apiData.key}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-
-        showData(data);
       });
   }
 
@@ -97,7 +30,6 @@ export default class App extends Component {
               autocomplete="off"
               className="search-box"
               placeholder="Search for a city..."
-              onKeyPress={(event) => this.inputClickFunction()}
             />
           </header>
           <main>
