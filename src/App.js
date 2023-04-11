@@ -3,26 +3,41 @@ import "./App.css";
 
 export default class App extends Component {
   constructor() {
+    super();
     this.state = {
       countryValue: "",
       url: "https://api.openweathermap.org/data/2.5/weather?q=",
       key: "26c4d8ad14b57209671494df9bd9fcb9",
     };
 
-    super();
+    // this.fetchData = this.fetchData.bind(this)
   }
 
   fetchData() {
-    fetch(`${apiData.url}${countryValue}&&appid=${apiData.key}`)
+    fetch(
+      `${this.state.url}${this.state.countryValue}&&appid=${this.state.key}`
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
       });
   }
 
+  getCityWeather(event) {
+    this.setState({
+      countryValue: event.target.value,
+    });
+  }
+
+  // getCurrentweather(event){
+  //   if(event.key === 13){
+  //     fetchData()
+  //   }
+  // }
+
   render() {
     return (
-      <>
+      <> 
         <div className="app-wrap">
           <header>
             <input
@@ -30,6 +45,7 @@ export default class App extends Component {
               autocomplete="off"
               className="search-box"
               placeholder="Search for a city..."
+              onChange={(event) => this.getCityWeather(event)}
             />
           </header>
           <main>
