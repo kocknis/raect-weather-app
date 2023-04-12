@@ -12,8 +12,8 @@ export default class App extends Component {
         name: "Northampton, GB",
         data: "Thursday 10 January 2020",
         temp: "15",
-        weather: "Sunny",
         wind: "7",
+        weather: "Sunny",
       },
     };
 
@@ -26,14 +26,13 @@ export default class App extends Component {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
         this.setState({
           dataWeather: {
             name: data.name,
             data: "Thursday 10 January 2020",
             temp: Math.floor(data.main.temp - 273),
             weather: data.weather[0].main,
-            wind: data.wind.speed,
+            wind: data.wind.speed
           },
         });
       });
@@ -80,7 +79,7 @@ export default class App extends Component {
                 <span>°c</span>
               </div>
               <div className="weather">{this.state.dataWeather.weather}</div>
-              <div className="wind">{this.state.dataWeather.weather} km/h</div>
+              <div className="wind">{this.state.dataWeather.wind} km/h</div>
             </div>
           </main>
         </div>
