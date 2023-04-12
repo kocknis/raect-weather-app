@@ -10,7 +10,7 @@ export default class App extends Component {
       countryValue: "",
       dataWeather: {
         name: "Northampton, GB",
-        data: "Thursday 10 January 2020",
+        data: "11/16/2015",
         temp: "15",
         wind: "7",
         weather: "Sunny",
@@ -29,7 +29,7 @@ export default class App extends Component {
         this.setState({
           dataWeather: {
             name: data.name,
-            data: "Thursday 10 January 2020",
+            data: new Date().toLocaleDateString(),
             temp: Math.floor(data.main.temp - 273),
             weather: data.weather[0].main,
             wind: data.wind.speed
@@ -47,8 +47,10 @@ export default class App extends Component {
   getCurrentweather(event) {
     if (event.keyCode === 13) {
       this.fetchData();
-      // let time = new Data()
-      // console.log(time)
+
+      const today = new Date();
+
+      console.log(today)
     }
   }
 
