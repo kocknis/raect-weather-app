@@ -1,26 +1,23 @@
-import React, { Component } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
-export default class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      url: "https://api.openweathermap.org/data/2.5/weather?q=",
-      key: "26c4d8ad14b57209671494df9bd9fcb9",
-      countryValue: "",
-      dataWeather: {
-        name: "Northampton, GB",
-        data: "11/16/2015",
-        temp: "15",
-        wind: "7",
-        weather: "Sunny",
-      },
-    };
 
-    this.fetchData = this.fetchData.bind(this);
-  }
+export default function App() {
 
-  async fetchData() {
+ const [data, setData] = useState({
+    url: "https://api.openweathermap.org/data/2.5/weather?q=",
+    key: "26c4d8ad14b57209671494df9bd9fcb9",
+    countryValue: "",
+    dataWeather: {
+      name: "Northampton, GB",
+      data: "11/16/2015",
+      temp: "15",
+      wind: "7",
+      weather: "Sunny",
+    },
+  });
+
+  async function  fetchData() {
     await fetch(
       `${this.state.url}${this.state.countryValue}&&appid=${this.state.key}`
     )
@@ -38,13 +35,13 @@ export default class App extends Component {
       });
   }
 
-  getCityWeather(event) {
+  function getCityWeather(event) {
     this.setState({
       countryValue: event.target.value,
     });
   }
 
-  getCurrentweather(event) {
+  function getCurrentweather(event) {
     if (event.keyCode === 13) {
       this.fetchData();
 
@@ -54,7 +51,7 @@ export default class App extends Component {
     }
   }
 
-  render() {
+
     window.addEventListener("keydown", (event) =>
       this.getCurrentweather(event)
     );
@@ -87,5 +84,4 @@ export default class App extends Component {
         </div>
       </>
     );
-  }
 }
