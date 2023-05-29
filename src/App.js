@@ -32,8 +32,7 @@ export default function App() {
           },
         });
       });
-      setSendData(false)
-
+    setSendData(false);
   }
 
   useEffect(() => {
@@ -46,7 +45,7 @@ export default function App() {
 
   function getCurrentweather(event) {
     if (event.keyCode === 13) {
-      setSendData(true)
+      setSendData(true);
     } else {
       return false;
     }
@@ -83,3 +82,5 @@ export default function App() {
     </>
   );
 }
+
+// finished
