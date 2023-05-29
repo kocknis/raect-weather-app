@@ -6,6 +6,7 @@ export default function App() {
   const key = "26c4d8ad14b57209671494df9bd9fcb9";
 
   const [countryValue, setCountryValue] = useState("");
+  const [sendData, setSendData] = useState(false);
 
   const [data, setData] = useState({
     dataWeather: {
@@ -31,7 +32,13 @@ export default function App() {
           },
         });
       });
+      setSendData(false)
+
   }
+
+  useEffect(() => {
+    fetchData();
+  }, [sendData]);
 
   function getCityWeather(event) {
     setCountryValue(event.target.value);
@@ -39,7 +46,7 @@ export default function App() {
 
   function getCurrentweather(event) {
     if (event.keyCode === 13) {
-        fetchData();
+      setSendData(true)
     } else {
       return false;
     }
